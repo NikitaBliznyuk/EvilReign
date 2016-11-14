@@ -3,8 +3,9 @@ using System.Collections;
 
 public class MainMenuController 
 {
+	private GameObject settingsButtons;
+
 	private Transform buttonsTransform;
-	private Transform settingsButtonsTransform;
 	private int direction;
 	private float speed;
 	private float startPosition;
@@ -12,13 +13,23 @@ public class MainMenuController
 
 	public MainMenuController()
 	{
-		GameObject[] list = GameObject.FindGameObjectsWithTag ("Movable");
-		buttonsTransform = list [0].GetComponent<Transform>();
-		settingsButtonsTransform = list [1].GetComponent<Transform>();
+		buttonsTransform = GameObject.FindGameObjectWithTag ("Movable").GetComponent<Transform>();
+		settingsButtons = GameObject.FindGameObjectWithTag ("Settings");
+		settingsButtons.SetActive (false);
 		direction = 0;
 		speed = 4000.0f;
 		range = Screen.width / 2;
 		startPosition = buttonsTransform.position.x;
+	}
+
+	public void ShowSettings()
+	{
+		settingsButtons.SetActive (true);
+	}
+
+	private void CloseSetting()
+	{
+		settingsButtons.SetActive (false);
 	}
 
 	public void ShowWindow()
@@ -38,7 +49,6 @@ public class MainMenuController
 
 	public void Update()
 	{
-		Debug.Log ("start buttons: " + buttonsTransform.position.x + ", settings: " + settingsButtonsTransform.position.x);
 		if(direction != 0)
 			MoveButtons ();
 	}
@@ -48,13 +58,15 @@ public class MainMenuController
 		if ((startPosition - buttonsTransform.position.x) * direction <= (range - direction * (range - 150)) * direction)
 		{
 			buttonsTransform.Translate (startPosition - (1 - direction) * range - buttonsTransform.position.x, 0.0f, 0.0f);
-			settingsButtonsTransform.Translate (buttonsTransform.position.x + range * 2 - settingsButtonsTransform.position.x, 0.0f, 0.0f);
+			if (direction == 1)
+			{
+				CloseSetting ();
+			}
 			direction = 0;
 		}
 		else
 		{
 			buttonsTransform.Translate (direction * speed * Time.deltaTime, 0.0f, 0.0f);
-			settingsButtonsTransform.Translate (direction * speed * Time.deltaTime, 0.0f, 0.0f);
 		}
 	}
 }

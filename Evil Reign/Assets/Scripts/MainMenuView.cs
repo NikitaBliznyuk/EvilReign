@@ -24,6 +24,7 @@ public class MainMenuView : MonoBehaviour {
 	public void OnSettingButtonClicked()
 	{
 		Debug.Log ("Settings");
+		controller.ShowSettings ();
 		controller.ShowWindow ();
 	}
 
