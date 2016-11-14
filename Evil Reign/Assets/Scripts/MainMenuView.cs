@@ -12,25 +12,24 @@ public class MainMenuView : MonoBehaviour {
 
 	public void OnNewGameButtonClicked()
 	{
-		Debug.Log ("New game");
+		controller.LoadNewGame ();
 	}
 
 	public void OnLoadGameButtonClicked()
 	{
-		Debug.Log ("Load game");
-		controller.ShowWindow ();
+		// TODO 1. file list
+		//		2. loading by choosing
 	}
 
 	public void OnSettingButtonClicked()
 	{
-		Debug.Log ("Settings");
 		controller.ShowSettings ();
 		controller.ShowWindow ();
 	}
 
 	public void OnExitButtonClicked()
 	{
-		Debug.Log ("Exit");
+		// TODO 1. exit
 	}
 
 	public void OnCloseSettingsClicked()
@@ -42,6 +41,11 @@ public class MainMenuView : MonoBehaviour {
 	{
 		controller.SaveSettings ();
 		controller.CloseWindow ();
+	}
+
+	public void OnCloseNewGameClicked()
+	{
+		controller.LoadMainMenu ();
 	}
 
 	private void Update()
