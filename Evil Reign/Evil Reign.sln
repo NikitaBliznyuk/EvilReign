@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{F55891A0-7611-3829-37DC-F1EB19F92A23}") = "Evil Reign", "Assembly-CSharp.csproj", "{A70CCE99-52FF-A59D-3C78-1CB4A0C30BBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A70CCE99-52FF-A59D-3C78-1CB4A0C30BBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A70CCE99-52FF-A59D-3C78-1CB4A0C30BBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A70CCE99-52FF-A59D-3C78-1CB4A0C30BBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A70CCE99-52FF-A59D-3C78-1CB4A0C30BBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
