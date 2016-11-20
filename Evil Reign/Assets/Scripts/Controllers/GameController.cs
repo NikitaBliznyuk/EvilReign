@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameController: MonoBehaviour 
 {
 	public GameObject GUI;
+	public GameObject inventoryMenu;
 	public GameObject pauseMenu;
 	public GameObject healthBar;
 	public GameObject energyBar;
@@ -24,6 +25,11 @@ public class GameController: MonoBehaviour
 		pauseMenu.SetActive (!menuEnabled);
 		model.SetPlayerMoveState (menuEnabled);
 		menuEnabled = !menuEnabled;
+	}
+
+	public void OnInventoryMenuClicked ()
+	{
+		
 	}
 
 	public void OnExitToMainMenuClicked()

@@ -7,6 +7,7 @@ public class MainMenuController : MonoBehaviour
 	public GameObject settingsButtons;
 	public Transform buttonsTransform;
 
+	// <--- (-1)     (0)     (1)--->
 	private int direction;
 	private float speed;
 	private float startPosition;
@@ -19,7 +20,7 @@ public class MainMenuController : MonoBehaviour
 
 	public void OnNewGameButtonClicked()
 	{
-		LoadNewGame ();
+		SceneManager.LoadScene (1);
 	}
 
 	public void OnLoadGameButtonClicked()
@@ -30,8 +31,8 @@ public class MainMenuController : MonoBehaviour
 
 	public void OnSettingButtonClicked()
 	{
-		ShowSettings ();
-		ShowWindow ();
+		settingsButtons.SetActive (true);
+		direction = -1; // left direction
 	}
 
 	public void OnExitButtonClicked()
@@ -41,18 +42,13 @@ public class MainMenuController : MonoBehaviour
 
 	public void OnCloseSettingsClicked()
 	{
-		CloseWindow ();
+		direction = 1;
 	}
 
 	public void OnSaveSettingsClicked()
 	{
-		SaveSettings ();
-		CloseWindow ();
-	}
-
-	public void OnCloseNewGameClicked()
-	{
-		LoadMainMenu ();
+		// TODO save settings
+		direction = 1;
 	}
 
 	private void GetMenuObjects()
@@ -65,50 +61,15 @@ public class MainMenuController : MonoBehaviour
 		settingsButtons.GetComponent<Transform> ().Translate (range * 2, 0.0f, 0.0f);
 	}
 
-	public void LoadNewGame()
-	{
-		SceneManager.LoadScene (1);
-	}
-
-	public void ShowSettings()
-	{
-		settingsButtons.SetActive (true);
-	}
-
-	private void CloseSetting()
-	{
-		settingsButtons.SetActive (false);
-	}
-
-	public void ShowWindow()
-	{
-		direction = -1;
-	}
-
-	public void CloseWindow()
-	{
-		direction = 1;
-	}
-
-	public void SaveSettings ()
-	{
-		Debug.Log ("Save settings");
-	}
-
 	private void DisableAllWindows()
 	{
-		CloseSetting ();
+		settingsButtons.SetActive (false);
 	}
 
 	public void Update()
 	{
 		if(direction != 0)
 			MoveButtons ();
-	}
-
-	public void LoadMainMenu ()
-	{
-		SceneManager.LoadScene (0);
 	}
 
 	private void MoveButtons()

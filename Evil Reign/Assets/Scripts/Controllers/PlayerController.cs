@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour 
 {
+	public Text touches;
+
 	private float speed = 10.0f;
 	private Vector3 movePosition;
 	private bool onTheMove = false;
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
+		touches.text = "" + Input.touchCount;
 		if(EnableToMove)
 			CheckInput ();
 		Move ();
