@@ -38,6 +38,7 @@ public class MainMenuController : MonoBehaviour
 	public void OnExitButtonClicked()
 	{
 		// TODO 1. exit
+		Application.Quit();
 	}
 
 	public void OnCloseSettingsClicked()

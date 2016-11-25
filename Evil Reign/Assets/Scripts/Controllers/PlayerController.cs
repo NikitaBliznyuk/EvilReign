@@ -30,22 +30,23 @@ public class PlayerController : MonoBehaviour
 	private void Update()
 	{
 		touches.text = "" + Input.touchCount;
-		if(EnableToMove)
+		if (EnableToMove) {
 			CheckInput ();
-		Move ();
+			Move ();
+		}
 	}
 
 	private void CheckInput()
 	{
-		if (Input.GetMouseButtonDown (0))
-		{
+		if (Input.touchCount > 0) {
 			onTheMove = true;
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			Ray ray = Camera.main.ScreenPointToRay (new Vector3 (Input.GetTouch (0).position.x, Input.GetTouch (0).position.y, 0.0f));
 			RaycastHit hit;
-			if (Physics.Raycast(ray, out hit, 300.0f))
-			{
+			if (Physics.Raycast (ray, out hit, 300.0f)) {
 				movePosition = hit.point;
 			}
+		} else {
+			movePosition = playerTransform.position;
 		}
 	}
 

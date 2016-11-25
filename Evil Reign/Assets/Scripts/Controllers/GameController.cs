@@ -17,24 +17,36 @@ public class GameController: MonoBehaviour
 	{
 		model = Model.Instance;
 		pauseMenu.SetActive (false);
+		inventoryMenu.SetActive (false);
 	}
 
 	public void OnPauseMenuClicked()
 	{
+		DisableGUI ();
+		pauseMenu.SetActive (menuEnabled);
+	}
+
+	private void DisableGUI()
+	{
 		GUI.SetActive (menuEnabled);
-		pauseMenu.SetActive (!menuEnabled);
 		model.SetPlayerMoveState (menuEnabled);
 		menuEnabled = !menuEnabled;
 	}
 
 	public void OnInventoryMenuClicked ()
 	{
-		
+		DisableGUI ();
+		inventoryMenu.SetActive (menuEnabled);
 	}
 
 	public void OnExitToMainMenuClicked()
 	{
 		SceneManager.LoadScene (0);
+	}
+
+	public void OnExit()
+	{
+		Application.Quit ();
 	}
 
 	private void OnDestroy()
