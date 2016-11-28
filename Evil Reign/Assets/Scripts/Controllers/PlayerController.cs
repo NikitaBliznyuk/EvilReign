@@ -29,8 +29,9 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
-		touches.text = "" + Input.touchCount;
-		if (EnableToMove) {
+		touches.text = "" + (int)(1.0f / Time.smoothDeltaTime);
+		if (EnableToMove)
+		{
 			CheckInput ();
 			Move ();
 		}
@@ -38,14 +39,19 @@ public class PlayerController : MonoBehaviour
 
 	private void CheckInput()
 	{
-		if (Input.touchCount > 0) {
+		if (Input.GetMouseButton(0))
+		{
 			onTheMove = true;
-			Ray ray = Camera.main.ScreenPointToRay (new Vector3 (Input.GetTouch (0).position.x, Input.GetTouch (0).position.y, 0.0f));
+			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
-			if (Physics.Raycast (ray, out hit, 300.0f)) {
+			if (Physics.Raycast (ray, out hit, 300.0f))
+			{
+				Debug.Log (hit.collider.tag);
 				movePosition = hit.point;
 			}
-		} else {
+		}
+		else 
+		{
 			movePosition = playerTransform.position;
 		}
 	}
@@ -54,11 +60,12 @@ public class PlayerController : MonoBehaviour
 	{
 		if (onTheMove) 
 		{
-			Vector3 direction = movePosition - playerTransform.position; 
+			playerTransform.LookAt (new Vector3(movePosition.x, playerTransform.position.y, movePosition.z));
+			Vector3 direction = movePosition - playerTransform.position;
 			direction.y = 0;
 			direction = direction.magnitude > 1 ? direction.normalized : direction;
 			if (direction.magnitude > 0.01f) {
-				playerTransform.Translate (direction * speed * Time.deltaTime);
+				playerTransform.Translate (Vector3.forward * speed * Time.deltaTime);
 			}
 			else
 			{
